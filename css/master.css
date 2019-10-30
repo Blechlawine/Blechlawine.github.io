@@ -6,6 +6,7 @@ body {
 .centered {
     position: relative;
     display: block;
+    text-align: center;
 }
 
 .centeredChild {
@@ -18,12 +19,13 @@ body {
     margin: auto;
 }
 
-h1 {
-    color: white;
-}
-
 .content {
     background-color: white;
     padding: 20px;
-    transform: translateY(100vh);
+    transform: translateY(75vh);
+}
+
+#starFieldCanvas {
+    position: absolute;
+    z-index: -5;
 }
