@@ -1,8 +1,18 @@
 function startStarfield() {
     var starFieldCanvas = document.getElementById("starFieldCanvas");
     if(starFieldCanvas.getContext) {
-        var starfield = new Starfield(starFieldCanvas);
-        starfield.canvas.addEventListener("mousemove", starfield.onMouseMove);
+        var starfield = new Starfield();
+        starFieldCanvas.addEventListener("mousemove", function(event) { //doesnt get fired?!?!?!?!??!?!?!?!?!??!?!?!?!?!?!??!?!?!?!?!??!?!?!?!??!?!?!?
+            let e = event || window.event;
+            // starfield.onMouseMove(e);
+            console.log(e.clientX);
+            starfield.mouseX = e.clientX;
+            starfield.mouseY = e.clientY;
+        });
+        // starFieldCanvas.onmousemove = function(e) {
+        //     starfield.mouseX = e.clientX;
+        //     starfield.mouseY = e.clientY;
+        // };
         var blah = setInterval(function() {
             starfield.draw();
         }, 33);
@@ -11,20 +21,26 @@ function startStarfield() {
 
 class Starfield {
 
-    constructor(canvasIn) {
+    constructor() {
         this.canvas = document.getElementById("starFieldCanvas");
         this.context = this.canvas.getContext("2d");
         this.canvasData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
         this.context.fillStyle = "#FF0000";
-        this.stars = [];
-        this.mousePos = (0, 0);
+        this.mousePos = [0, 0];
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.starPositions = [];
         for(var i = 0; i < 200; i++) {
-            this.stars.push(new Star(this.getRandomInt(this.canvas.width), this.getRandomInt(this.canvas.height), this.getRandomInt(30)));
+            this.starPositions.push([Math.random(), Math.random(), Math.random()]);
         }
     }
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    maxThisRandom(max, random) {
+        return Math.floor(random * Math.floor(max));
     }
 
     set canvas(value) {
@@ -36,34 +52,31 @@ class Starfield {
     }
 
     draw() {
-        console.log(this.canvas);
         if(this.canvas) {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
-            this.context.fillStyle = "#FF0000";
-            this.context.strokeStyle = "#FF0000";
-            for(var star in this.stars) {
+            this.context.fillStyle = "#FFFFFF";
+            this.context.strokeStyle = "#FFFFFF";
+            this.context.beginPath();
+            // console.log(this.mouseX);
+            this.context.arc(this.mouseX, this.mouseY, 10, 0, 2 * Math.PI, false);
+            this.context.fill();
+            for(var i = 0; i < 200; i++) {
                 this.context.beginPath();
-                this.context.arc(star.x, star.y, star.size, 0, 2 * Math.PI, false);
+                let x = this.maxThisRandom(this.canvas.width, this.starPositions[i][0]);
+                let y = this.maxThisRandom(this.canvas.height, this.starPositions[i][1]);
+                let size = this.maxThisRandom(3, this.starPositions[i][2]);
+                this.context.arc(x, y, size, 0, 2 * Math.PI, false);
                 this.context.fill();
             }
-            this.context.beginPath();
-            this.context.lineTo(this.mousePos[0], this.mousePos[1]);
-            this.context.stroke();
         }
     }
 
     onMouseMove(event) {
-        var mouseX = event.clientX;
-        var mouseY = event.clientY;
-        this.mousePos = [mouseX, mouseY];
-    }
-}
-
-class Star {
-    constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+        let e = event || window.event;
+        console.log(e.clientX);
+        this.mouseX = e.clientX;
+        this.mouseY = e.clientY;
+        // this.mousePos = [mouseX, mouseY];
     }
 }

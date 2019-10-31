@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
 
 * {
     font-family: "Roboto", sans-serif;
@@ -13,9 +13,12 @@ h1 {
 #logotext {
     text-align: center;
     color: white;
+    font-size: 56px;
 }
 
 #subtitle {
+    margin-top: -25px;
     text-align: center;
     color: white;
+    font-weight: 300;
 }

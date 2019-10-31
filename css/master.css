@@ -9,6 +9,11 @@ body {
     text-align: center;
 }
 
+.vertiCentered {
+    top: 35%;
+    position: relative;
+}
+
 .centeredChild {
     width: 20%;
     position: absolute;
@@ -22,11 +27,10 @@ body {
 .content {
     background-color: white;
     padding: 20px;
-    transform: translateY(75vh);
+    transform: translateY(76vh);
 }
 
 #starFieldCanvas {
     position: absolute;
     z-index: -5;
-    background-color: white;
 }
