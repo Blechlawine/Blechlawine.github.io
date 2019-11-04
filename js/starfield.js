@@ -102,7 +102,7 @@ class Starfield {
                 this.context.beginPath();
                 let x = this.maxThisRandom(this.canvas.width, this.starPositions[i][0]);
                 let y = this.maxThisRandom(this.canvas.height, this.starPositions[i][1]);
-                let size = this.maxThisRandom(3, this.starPositions[i][2]);
+                let size = Math.max(this.maxThisRandom(3, this.starPositions[i][2]), 1);
                 this.context.arc(x, y, size, 0, 2 * Math.PI, false);
                 this.context.fill();
             }
