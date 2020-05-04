@@ -1,0 +1,10 @@
+.colors {
+    display: flex;
+    flex-direction: row;
+}
+
+.color {
+    width: 25%;
+    height: 50vh;
+    cursor: pointer;
+}

@@ -34,3 +34,8 @@ body {
     position: absolute;
     z-index: -5;
 }
+
+footer {
+    height: 200px;
+    padding: 24px;
+}

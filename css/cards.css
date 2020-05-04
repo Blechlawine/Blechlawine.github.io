@@ -1,5 +1,6 @@
 .cards { /*keine columns hier verwenden, sieht komisch aus*/
     display: table;
+    border-spacing: 16px;
 }
 
 .card {
@@ -11,8 +12,11 @@
     border: rgba(0, 0, 0, 0.2) solid 1px;
     cursor: pointer;
     transition: all 0.2s;
-    margin-bottom: 8px;
-    margin-left: 8px;
+    padding: 0%;
+}
+
+.cardRow {
+    display: table-row;
 }
 
 .card:hover {
@@ -21,6 +25,13 @@
 
 .cardheader {
     height: 150px;
+    width: 350px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.cardheader img {
+    height: 100%;
 }
 
 .cardcontent {
